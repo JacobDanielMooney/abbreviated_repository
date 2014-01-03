@@ -10,4 +10,4 @@ Add all solutions to the spec files directly.
 
 ###Credit###
 
-This is based on Josh Cheek's amazing Ruby Kick-Start[https://github.com/JoshCheek/ruby-kickstart]
+This is based on [Josh Cheek's](http://joshcheek.com/) amazing [Ruby Kick-Start](https://github.com/JoshCheek/ruby-kickstart)
