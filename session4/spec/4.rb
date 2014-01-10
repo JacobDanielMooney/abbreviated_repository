@@ -8,10 +8,15 @@
 # first_object nil, 1, 2      # => 1
 # first_object nil, nil, nil  # => nil
 
-def first_object
+def first_object(item1, item2, item3)
+  results = item1 || item2
+  results = item3 || nil unless results
+  results
 end
 
-describe 'first_object' do  
+first_object(false, false, false)
+
+describe 'first_object' do
   specify { first_object(1, nil, nil).should == 1 }
   specify { first_object(nil, 1, nil).should == 1 }
   specify { first_object(nil, nil, 1).should == 1 }

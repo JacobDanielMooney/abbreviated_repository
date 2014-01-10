@@ -8,6 +8,21 @@ require 'pathname'
 # 
 # longest_method o # => :this_is_a_really_really_really_really_really_long_method_name
 
+def longest_method(given_object)
+    @longest_symbol = :a
+    array_of_methods = given_object.methods
+    array_of_methods.each do |element|
+        @longest_symbol = element if element.length > @longest_symbol.length
+    end
+    @longest_symbol
+end
+
+o = Object.new
+def o.this_is_a_really_really_really_really_really_long_method_name
+end
+
+longest_method o
+
 describe 'longest_method' do
   [ 1,
     2,

@@ -16,6 +16,14 @@ LastNameError   =  Class.new RuntimeError
 # why that error was raised.
 
 def full_name(person)
+  begin
+    return_string = String.new
+    return_string = person.first_name + " " + person.last_name
+  rescue FirstNameError => e
+    return_string += person.last_name
+  rescue LastNameError => e
+    return_string += person.first_name
+  end
 end
 
 describe 'full_name' do

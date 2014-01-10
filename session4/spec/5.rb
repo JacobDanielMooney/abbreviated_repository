@@ -17,8 +17,21 @@ include FileUtils
 #
 # line_sums('nums.txt')   # =>   808 + 919 + 822 + 876 + 974   # =>   4399
 
-def line_sums
+def line_sums(filename)
+  line_array = File.readlines filename
+  greatest_nums = Array.new
+  line_array.each do |line|
+    greatest_num = 0
+    line.split(" ").each_with_index do |number, index|
+      greatest_num = number.to_i if number.to_i > greatest_num
+      greatest_nums << greatest_num if index == (line.split(" ").size)-1
+    end
+  end
+  result = 0
+  greatest_nums.each{|element| result += element}
+  result
 end
+
 
 def get_expected_answer(path)
   { 

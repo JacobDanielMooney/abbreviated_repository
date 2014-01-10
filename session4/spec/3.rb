@@ -25,8 +25,18 @@
 #   The method then returns 45
 #
 
-def passthrough
+def passthrough(given_range, pass_number, &block)
+  given_range.each do |range_number|
+    pass_number = block.call(pass_number , range_number)
+  end
+  pass_number
 end
+
+
+passthrough 5..10, 0 do |sum, num|
+  sum + num
+end
+
 
 describe 'passthrough' do
 
