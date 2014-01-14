@@ -23,6 +23,37 @@
 # ff.min                        # => 1
 # ff.select { |num| num.odd? }  # => [1, 5, 3]
 
+class List
+  include Enumerable
+  def initialize
+    @this_list = Array.new
+  end
+  def <<(new_element)
+    @this_list << new_element
+    self
+  end
+  def inspect
+    result = "#<List: "
+    @this_list.each do |element|
+      result += "#{element.inspect}, "
+    end
+    result.sub!(/, $/, "")
+    result += ">"
+  end
+  def each(&block)
+    @this_list.each do |element|
+      block.call element if block_given?
+    end
+  end
+end
+
+my_list = List.new
+my_list << 1
+my_list.inspect
+my_list << 2 << 3
+my_list.inspect
+
+
 describe 'List' do
   
   specify 'List should exist' do

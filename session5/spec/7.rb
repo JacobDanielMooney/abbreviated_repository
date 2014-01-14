@@ -33,7 +33,29 @@
 # 
 
 def tree_parser(trees)
+  unformated_results = Array.new
+  formated_results = Array.new
+  tree_name_regex = /^[a-z ]*/i
+  ship_footage_regex = /[0-9] to [0-9] feet/
+  price_regex = /\$[0-9]*.[0-9]*$/
+  unformated_results << trees.scan(tree_name_regex)
+  unformated_results << trees.scan(ship_footage_regex)
+  unformated_results << trees.scan(price_regex)
+  unformated_results[0].length.times do |i|
+    temp_array = Array.new
+    unformated_results.each do |element|
+      temp_array << element[i]
+    end
+    formated_results << temp_array
+  end
+  formated_results
 end
+
+"American Redbud Tree, which ships at 1 to 2 feet, cost $5.95"[/\$[0-9]*.[0-9]*\Z/]
+
+tree_parser("American Redbud Tree, which ships at 1 to 2 feet, cost $5.95
+          Autumn Flowering Cherry, which ships at 2 to 4 feet, cost: $8.95")
+
 
 describe 'tree_parser' do
   

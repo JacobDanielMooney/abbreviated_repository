@@ -24,10 +24,40 @@
 #   controller.body_class + 'landing'     # => #<RuntimeError: use << method instead>
 #
 
-class ApplicationController  
-  def body_class
+module BCModule
+  def <<(given_string)
+    self.concat " " unless (length.zero?) || (self.split(" ").include? given_string)
+    self.concat given_string unless self.split(" ").include? given_string
+    self
+  end
+  def +(given_string)
+    raise "use << method instead"
+  end
+  def []=(o,n)
+    raise "use << method instead"
+  end
+  def *(given_string)
+    raise "use << method instead"
   end
 end
+
+class ApplicationController
+  def body_class
+    unless @body_class
+      @body_class = String.new
+      @body_class.extend BCModule
+    end
+    @body_class
+  end
+end
+
+controller = ApplicationController.new
+controller.body_class
+controller.body_class << "admin"
+controller.body_class << "category"
+controller.body_class << "page" << "order"
+
+
 
 describe 'ApplicationController#body_class' do
   

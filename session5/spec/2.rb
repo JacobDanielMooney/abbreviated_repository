@@ -98,6 +98,9 @@ class ApplicationController
       before_filters.each { |filter| filter.call instance }
       instance
     end
+    def css_classes(options=Hash.new, *strings)
+      
+    end
   end
 end
 

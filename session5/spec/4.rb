@@ -47,6 +47,27 @@
 # Student.new(30,:sophmore) >= Student.new(20,:freshman)  # => true
 
 module OperatorGeneratorFromSpace
+  def >(other_student)
+    return true if self.<=>(other_student) > 0
+    return false
+  end
+  def >=(other_student)
+    return true if self.<=>(other_student) > 0 || self.<=>(other_student) == 0
+    return false 
+  end
+  def ==(other_student)
+    other_student
+    return true if self.<=>(other_student) == 0
+    return false
+  end
+  def <=(other_student)
+    return true if self.<=>(other_student) < 0 || self.<=>(other_student) == 0
+    return false
+  end
+  def <(other_student)
+    return true if self.<=>(other_student) < 0
+    return false
+  end
 end
 
 class Student
@@ -62,6 +83,7 @@ class Student
   end
   
   def <=>(student)
+    age
     if age == student.age
       GRADES.index(grade) <=> GRADES.index(student.grade)
     else
@@ -70,6 +92,11 @@ class Student
   end
   
 end
+
+
+
+
+
 
 describe OperatorGeneratorFromSpace do
   it 'should return true for Student.new(20,:freshman) == Student.new(20,:freshman)' do

@@ -20,6 +20,7 @@
 # (depending on your Ruby version, your results will either be Strings of Symbols)
 
 def list_of_errors_and_exceptions
+  errors = Module.constants.grep(/error|exception/i)
 end
 
 errors = Module.constants.grep(/error|exception/i)

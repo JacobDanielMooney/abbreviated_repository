@@ -2,8 +2,10 @@
 # Have the method below return the right regex:
 
 def bar_regex
-  //
+  /\b(Bar|bar)\b/
 end
+
+'bar'[bar_regex]
 
 describe 'bar_regex' do
   
